@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
+
+body {
+  height: 100%;
+  background: #f4f0f3 linear-gradient(#f4f0f3, #eaf3f7) no-repeat;
+  font-family: 'Mulish', sans-serif;
+  font-size: 14px;
+}
+
+.list {
+  width: 700px;
+  margin: 2rem auto;
+  padding: 0;
+  list-style: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 15px 0 rgba(62, 118, 244, 0.14);
+  overflow: hidden;
+}
+
+.list li {
+  display: flex;
+  align-items: center;
+  height: 90px;
+  padding: 26px 20px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.list li:not(:last-child) {
+  border-bottom: 1px solid #ccc;
+}
+
+.list p {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.list li:hover {
+  box-shadow: inset 0 0 14px -3px rgba(65, 60, 244, 0.65);
+}
+
+.list li:hover p {
+  overflow: visible;
+  white-space: normal;
+}
+
+.list li canvas {
+  border-radius: 50%;
+  margin-right: 15px;
+}
