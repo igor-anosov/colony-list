@@ -4,11 +4,10 @@ import {
   getDataByFilter,
   EventFilters,
 } from './utils';
-import Blockies from 'react-blockies';
 import styles from './App.module.css';
+import ListItem from "./ListItem";
 
 const myToken = 'IUAH59DXTP8BDN9WQBCNR76Z5SN8GJ1YEB';
-
 
 type AppState = {
   events: {
@@ -93,10 +92,6 @@ function App() {
        .catch((error: Error) => console.error(error));
   }, []);
 
-  useEffect(() => {
-    console.log('---data.events.', data.events.payoutClaimed[0])
-  }, [data]);
-
   return (
     <div>
       <ul className={styles.list} data-testid="list">
@@ -104,32 +99,29 @@ function App() {
         {!data.isFetching && (
            data.events.payoutClaimed.map(block => {
              return (
-                <li key={block.blockNumber + block.transactionIndex}>
-                  <Blockies seed={block.userAddress} size={10} scale={3.7} />
+                <ListItem block={block} key={block.blockNumber + block.transactionIndex}>
                   <p>User <b>{block.userAddress}</b> claimed <b>{block.humanReadableAmount}</b>&nbsp;
                     payout from pot <b>{block.humanReadableFundingPotId}</b></p>
-                </li>
+                </ListItem>
              )
            }))
         }
         {!data.isFetching && (
            data.events.colonyRoleSet.map(block => {
              return (
-                <li key={block.blockNumber + block.transactionIndex}>
-                  <Blockies seed={block.userAddress} size={10} scale={3.7} />
+                <ListItem block={block} key={block.blockNumber + block.transactionIndex}>
                   <p><b>{ColonyRole[block.values.role]}</b> role assigned to user <b>{block.userAddress}</b>&nbsp;
                     in domain <b>{block.humanReadableDomainId}</b></p>
-                </li>
+                </ListItem>
              )
            }))
         }
         {!data.isFetching && (
            data.events.domains.map(block => {
              return (
-                <li key={block.blockNumber + block.transactionIndex}>
-                  <Blockies seed={block.userAddress} size={10} scale={3.7} />
+                <ListItem block={block} key={block.blockNumber + block.transactionIndex}>
                   <p>Domain <b>{block.humanReadableDomainId}</b> added</p>
-                </li>
+                </ListItem>
              )
            }))
         }
